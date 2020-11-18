@@ -1,4 +1,4 @@
-package com.ssafy.dao;
+package com.ssafy.domain;
 
 /**
  * 페이징 처리하는 컨트롤러
