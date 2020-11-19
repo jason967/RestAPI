@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.NoticeDAO">
+
+	<!-- select -->
+	<select id="getNotices" resultType="Notice">
+		SELECT * FROM notice
+	</select>
+
+	<select id="selectNotice" parameterType="String">
+		select
+		title,content,watch from notice where idx=#{value}
+	</select>
+
+	<insert id="setNotice" parameterType="Notice">
+		insert into notice(title,content,watch) values
+		(#{title},#{content},#{watch})
+	</insert>
+
+	<update id="updateNotice" parameterType="Notice">
+		update notice set
+		title=?,content=? where idx=#{idx}
+
+	</update>
+
+	<delete id="deleteNotice" parameterType="String">
+		DELETE FROM notice WHERE (`idx` = #{value})
+	</delete>
+
+</mapper>

@@ -8,7 +8,7 @@
 </head>
 <body>
 
-	<h1>hello.jsp............</h1>
-	<h1>${requestScope.message}</h1>
+	<h1>처리 중 문제가 발생하였습니다.</h1>
+	<h2>메시지 : ${error }</h2>
 </body>
 </html>

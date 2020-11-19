@@ -1,0 +1,50 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap");
+@import "login.css";
+@import "join.css"; 
+
+body {
+  font-family: "Open Sans", sans-serif;
+   
+}
+.welcome__wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.welcome-header {
+  margin: 150px 0px 40px 0px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.navbar-brand {
+  color: rgb(42, 190, 42);
+}
+.welcome-header__title {
+  color: rgb(42, 190, 42);
+  margin-bottom: 50px;
+  font-size: 50px;
+}
+.welcome-header__text {
+  width: 80%;
+  opacity: 0.7;
+}
+
+.info {
+  margin-top: 20px;
+  font-size: 25px;
+}
+
+.menuBox {
+  margin: 40px 0px 40px 0px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.site {
+  margin-bottom: 10px;
+  font-size: 30px;
+  font-weight: bold;
+}

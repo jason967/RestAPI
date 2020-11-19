@@ -13,7 +13,7 @@ public class HelloController {
 	public String baseUrl(Model model)
 	{
 		model.addAttribute("msg","테스트 페이지 입니다");
-		return "hello";
+		return "index";
 	}
 
 }
