@@ -1,40 +1,31 @@
 package com.ssafy.controller;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ssafy.domain.Hospital;
-import com.ssafy.domain.HouseDeal;
 import com.ssafy.domain.HouseInfo;
-import com.ssafy.domain.Screening;
 import com.ssafy.domain.SidoGugunCode;
 import com.ssafy.service.HospitalService;
 import com.ssafy.service.HouseMapService;
 import com.ssafy.service.ScreeningService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
+
+@CrossOrigin(origins = {"*"},maxAge = 6000)
 @RestController
+@Api(value = "Map",description = "map controller")
 public class RestHouseMapController {
 
 	private HouseMapService houseMapService;
@@ -58,9 +49,14 @@ public class RestHouseMapController {
 		this.screeningService = screeningService;
 	}
 
-	
+	@ApiOperation(value = "act:시도,구군,동  / code: 코드")
+	@ApiResponses({
+        @ApiResponse(code = 200, message = "OK !!"),
+        @ApiResponse(code = 500, message = "Internal Server Error !!"),
+        @ApiResponse(code = 404, message = "Not Found !!")
+})
 	@GetMapping("/map/{act}/{code}")
-	public ResponseEntity getSido( @PathVariable("act") String act,@PathVariable("code") String code) throws Exception {
+	public ResponseEntity<List<SidoGugunCode>> getSido( @PathVariable("act") String act,@PathVariable("code") String code) throws Exception {
 		
 		if("sido".equals(act) ) {
 			return new ResponseEntity<List<SidoGugunCode>>( houseMapService.getSido(),HttpStatus.OK) ;
@@ -71,12 +67,13 @@ public class RestHouseMapController {
 		else if("dong".equals(act)){
 			return new ResponseEntity<List<SidoGugunCode>>( houseMapService.getDongInGugun(code),HttpStatus.OK) ;
 		}
+		/*
 		else if("apt".equals(act)){
 			String dongName = houseMapService.getDongNameByCode(code);
 			return new ResponseEntity<List<HouseInfo>>( houseMapService.getAptInDong(dongName),HttpStatus.OK) ;
 		}
-		
-		return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR) ;
+		*/
+		return new ResponseEntity<>( HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	/*
 	@GetMapping("/map")

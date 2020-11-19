@@ -1,8 +1,14 @@
 package com.ssafy.domain;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel(value = "SidoGugunCode : 지역 번호, 지역이름" , description = "지역의 이름과 코드를 나타낸다.")
 public class SidoGugunCode {
 
+	@ApiModelProperty(value="시,도 코드")
 	private String sidoCode;
+	@ApiModelProperty(value="시,도 이름")
 	private String sidoName;
 	private String gugunCode;
 	private String gugunName;
