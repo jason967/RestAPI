@@ -22,6 +22,7 @@ public class HouseMapServiceImpl implements HouseMapService {
 
 	@Override
 	public List<SidoGugunCode> getSido() throws Exception {
+		System.out.println();
 		return houseMapDao.getSido();
 	}
 
@@ -31,7 +32,7 @@ public class HouseMapServiceImpl implements HouseMapService {
 	}
 
 	@Override
-	public List<HouseInfo> getDongInGugun(String gugun) throws Exception {
+	public List<SidoGugunCode> getDongInGugun(String gugun) throws Exception {
 		return houseMapDao.getDongInGugun(gugun);
 	}
 
@@ -54,6 +55,11 @@ public class HouseMapServiceImpl implements HouseMapService {
 	@Override
 	public SidoGugunCode getSidoGugunName(String guguncode) throws Exception {
 		return houseMapDao.getSidoGugunName(guguncode);
+	}
+
+	@Override
+	public String getDongNameByCode(String code) throws Exception {
+		return houseMapDao.getDongNameByCode(code);
 	}
 
 }

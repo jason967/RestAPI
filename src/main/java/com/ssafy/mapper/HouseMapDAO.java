@@ -17,7 +17,7 @@ public interface HouseMapDAO {
 
 	List<SidoGugunCode> getGugunInSido(String sido);
 
-	List<HouseInfo> getDongInGugun(String gugun);
+	List<SidoGugunCode> getDongInGugun(String gugun);
 
 	List<HouseInfo> getAptInDong(String dong);
 
@@ -26,4 +26,6 @@ public interface HouseMapDAO {
 	List<HouseDeal> getAptDetail(@Param("aptName") String aptName, @Param("dong") String dong);
 
 	SidoGugunCode getSidoGugunName(String guguncode);
+
+	String getDongNameByCode(String code);
 }

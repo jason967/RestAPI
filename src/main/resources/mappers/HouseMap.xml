@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
- <mapper namespace="com.mapper.HouseMapDAO">
+ <mapper namespace="com.ssafy.mapper.HouseMapDAO">
  
  <!-- select -->
  
@@ -19,11 +19,16 @@
  ORDER BY gugun_code
  </select>
  
+  <select id="getDongNameByCode" parameterType="String" resultType="String">
+ SELECT dong as dongName
+ FROM dongcode
+ where dongcode = #{value}
+ </select>
  
- <select id="getDongInGugun" parameterType="String" resultType="houseInfo">
- SELECT distinct dong, code 
- FROM houseinfo
- where code = #{value}
+ <select id="getDongInGugun" parameterType="String" resultType="SidoGugunCode">
+ SELECT dong as dongName, dongcode as dongCode 
+ FROM dongcode
+ where left(dongcode,5) = #{value}
  ORDER BY dong
  
  </select>

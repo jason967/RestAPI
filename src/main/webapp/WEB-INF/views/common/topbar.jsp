@@ -21,8 +21,8 @@ $(document).ready(function () {
 	});
 	
 	$(".loadData").click(function () {
-		$.get("${pageContext.request.contextPath}/map"
-				,{act:"sido"}
+		$.get("${root}/map"
+				,{act:"sido",code:""}
 				,function(data, status){
 					$.each(data, function(index, vo) {
 						$(".sido").append("<option value='"+vo.sido_code+"'>"+vo.sido_name+"</option>");
@@ -36,7 +36,7 @@ $(document).ready(function () {
 	});
 		
 	$("select[id$='Sido']").change(function() {// id명이 Sido로 끝나는 태그 선택(회원가입폼-makeSido, 정보수정폼-modifySido)
-			$.get("${pageContext.request.contextPath}/map"
+			$.get("${root}/map"
 					,{act:"gugun", sido:$(this).val()}
 					,function(data, status){
 						$(".gugun").empty();
@@ -51,7 +51,7 @@ $(document).ready(function () {
 		
 	});//change
 	$("select[id$='Gugun']").change(function() {// id명이 Gugun으로 끝나는 태그 선택
-		$.get("${pageContext.request.contextPath}/map"
+		$.get("${root}/map"
 				,{act:"dong", gugun:$(this).val()}
 				,function(data, status){
 					$(".dong").empty();

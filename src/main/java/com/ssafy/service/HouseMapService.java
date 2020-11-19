@@ -12,13 +12,15 @@ public interface HouseMapService {
 
 	List<SidoGugunCode> getGugunInSido(String sido) throws Exception;
 
-	List<HouseInfo> getDongInGugun(String gugun) throws Exception;
+	List<SidoGugunCode> getDongInGugun(String gugun) throws Exception;
 
 	List<HouseInfo> getAptInDong(String dong) throws Exception;
 
 	List<HouseInfo> getAptByName(String aptName) throws Exception;
 
 	List<HouseDeal> getAptDetail(String aptName, String dong) throws Exception;
+
+	String getDongNameByCode(String code) throws Exception;
 
 	SidoGugunCode getSidoGugunName(String guguncode) throws Exception;
 }

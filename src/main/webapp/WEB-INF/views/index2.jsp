@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="root" value="${pageContext.request.contextPath}"></c:set>
 <!DOCTYPE html>
 <html>
 <head>
@@ -87,9 +89,11 @@ html, body {
 				<section id="index_section" class="form-inline" style="margin-left: 30%;">
 				<script>
 				let colorArr = ['table-primary','table-success','table-danger'];
+				
 				$(document).ready(function(){
-					$.get("${pageContext.request.contextPath}/map/sido",function(data, status){
+					$.get("${root}/map/sido/default",function(data, status){
 						$.each(data, function(index, vo) {
+							console.log(vo);
 							$("#sido").append("<option value='"+vo.sidoCode+"'>"+vo.sidoName+"</option>");
 							});//each
 						}//function
@@ -98,35 +102,35 @@ html, body {
 				});//ready
 				
 				$(document).ready(function(){
+					
 					$("#sido").change(function() {
-						$.get("${pageContext.request.contextPath}/map"
-								,{act:"gugun", sido:$("#sido").val()}
-								,function(data, status){
+						
+						$.get("${root}/map/gugun/"+$("#sido").val(),function(data, status){
 									$("#gugun").empty();
 									$("#gugun").append('<option value="0">선택</option>');
 									$.each(data, function(index, vo) {
-										$("#gugun").append("<option value='"+vo.gugun_code+"'>"+vo.gugun_name+"</option>");
+										console.log(vo);
+										$("#gugun").append("<option value='"+vo.gugunCode+"'>"+vo.gugunName+"</option>");
 									});//each
 								}//function
 								, "json"
 						);//get
 					});//change
 					$("#gugun").change(function() {
-						$.get("${pageContext.request.contextPath}/map"
-								,{act:"dong", gugun:$("#gugun").val()}
+						$.get("${root}/map/dong/"+$("#gugun").val()								
 								,function(data, status){
 									$("#dong").empty();
 									$("#dong").append('<option value="0">선택</option>');
 									$.each(data, function(index, vo) {
-										$("#dong").append("<option value='"+vo.dong+"'>"+vo.dong+"</option>");
+										console.log(vo);
+										$("#dong").append("<option value='"+vo.dongCode+"'>"+vo.dongName+"</option>");
 									});//each
 								}//function
 								, "json"
 						);//get
 					});//change
 					$("#dong").change(function() {
-						$.get("${pageContext.request.contextPath}/map"
-								,{act:"apt", dong:$("#dong").val()}
+						$.get("${root}/map/apt/"+$("#dong").val()					
 								,function(data, status){
 									$("#searchResult").empty();
 									$.each(data, function(index, vo) {
@@ -148,7 +152,7 @@ html, body {
 				});//ready
 				
 				function searchByName() {
-					$.get("${pageContext.request.contextPath}/map"
+					$.get("${root}/map"
 							,{act:"searchByAptName", aptName:$("#aptName").val()}
 							,function(data, status){
 								$("#searchResult").empty();
